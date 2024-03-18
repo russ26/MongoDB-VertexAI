@@ -11,3 +11,5 @@ pip3 --version
 cd MongoDB-VertexAI-Qwiklab
 streamlit run app.py
 ```
+
+Inspired by [this blog](https://www.mongodb.com/developer/products/atlas/build-smart-applications-atlas-vector-search-google-vertex-ai/)
