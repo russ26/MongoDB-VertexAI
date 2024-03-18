@@ -32,8 +32,8 @@ db = client[db]
 
 one_way_hash = lambda x: hashlib.md5(x.encode("utf-8")).hexdigest()
 
-CHAT_VERIFY_COL = "chat-vec-verify"
 CHAT_APP_COL = collection
+CHAT_VERIFY_COL = collection + "-verify"
 
 PROMPT = PromptTemplate(template="""
        Use the following pieces of context to answer the question at the end. If you don't know the answer, just say that you don't know, don't try to make up an answer.
@@ -126,19 +126,18 @@ st.session_state.conv = get_conversation_chain()
 tab1, tab2 = st.tabs(["Q & A", "ADD document"])
 with tab1:
     st.markdown(
-        """<img src="https://banner2.cleanpng.com/20180811/pit/kisspng-mongodb-inc-website-development-nosql-data-mongodb-logo-nasdaq-software-logo-5b6f8f1ac39802.4573661215340377868012.jpg" class=" css-1lo3ubz" alt="MongoDB logo" style="height:200px;width:340px;align:center"> """,
+        """<img src="https://lapsql.files.wordpress.com/2021/09/mongodb.jpg" class=" css-1lo3ubz" alt="MongoDB logo" style="height:200px;width:340px;align:center"> """,
         unsafe_allow_html=True)
     # st.title("""Assistant for any source powered by Atlas Vector Search and VertexAI""")
-
-    chat_history_clear = st.button("Clear Chat History")
 
     if "conversation" not in st.session_state:
         st.session_state.conversation = None
     if ("chat_history" not in st.session_state) or chat_history_clear:
         st.session_state.chat_history = []
 
-    st.header("Generative AI Application powered by MongoDB Atlas")
+    st.header("GenAI app powered by MongoDB")
     user_question = st.text_input("Ask a question about your documents:")
+    chat_history_clear = st.button("Clear Chat History")
     if user_question:
         handle_userinput(user_question)
 
