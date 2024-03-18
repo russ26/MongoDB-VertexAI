@@ -19,20 +19,21 @@ from functools import lru_cache
 from pymongo import MongoClient
 import certifi
 
+from config_database import mongo_uri, db, collection
+
 import os
 from dotenv import load_dotenv
 
 load_dotenv()
 
 os.environ["SENTENCE_TRANSFORMERS_HOME"] = "tmp/st/"
-// update the mongodb srv 
-client = MongoClient("mongodbsrv", tlsCAFile=certifi.where())
-db = client["vertexaiApp"]
+client = MongoClient(mongo_uri, tlsCAFile=certifi.where())
+db = client[db]
 
 one_way_hash = lambda x: hashlib.md5(x.encode("utf-8")).hexdigest()
 
 CHAT_VERIFY_COL = "chat-vec-verify"
-CHAT_APP_COL = "chat-vec"
+CHAT_APP_COL = collection
 
 PROMPT = PromptTemplate(template="""
        Use the following pieces of context to answer the question at the end. If you don't know the answer, just say that you don't know, don't try to make up an answer.
