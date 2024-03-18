@@ -19,7 +19,7 @@ from functools import lru_cache
 from pymongo import MongoClient
 import certifi
 
-from config_database import mongo_uri, db, collection
+from config import mongo_uri, db, collection
 
 import os
 from dotenv import load_dotenv
@@ -126,7 +126,7 @@ st.session_state.conv = get_conversation_chain()
 tab1, tab2 = st.tabs(["Q & A", "ADD document"])
 with tab1:
     st.markdown(
-        """<img src="https://lh3.googleusercontent.com/I2_PSO0vMM8kLJxJ-OUIqtSBo3krzhmctqIkFv8Exgchm5X04h_MysTSB-8mELD6J_OIA1N2ExP_=e14-rj-sc0xffffff-h338-w600" class=" css-1lo3ubz" alt="MongoDB logo" style="height:200px;width:340px;align:center"> """,
+        """<img src="https://banner2.cleanpng.com/20180811/pit/kisspng-mongodb-inc-website-development-nosql-data-mongodb-logo-nasdaq-software-logo-5b6f8f1ac39802.4573661215340377868012.jpg" class=" css-1lo3ubz" alt="MongoDB logo" style="height:200px;width:340px;align:center"> """,
         unsafe_allow_html=True)
     # st.title("""Assistant for any source powered by Atlas Vector Search and VertexAI""")
 
@@ -137,7 +137,7 @@ with tab1:
     if ("chat_history" not in st.session_state) or chat_history_clear:
         st.session_state.chat_history = []
 
-    st.header("Assistant for any source powered by MongoDB Atlas Vector Search and VertexAI")
+    st.header("Generative AI Application powered by MongoDB Atlas")
     user_question = st.text_input("Ask a question about your documents:")
     if user_question:
         handle_userinput(user_question)
@@ -165,18 +165,3 @@ with tab2:
                 # insert to md5 once indexed
                 insert_doc_verify_mdb(md5)
                 st.write('Document added successfully')
-
-    with st.sidebar:
-        add_vertical_space(3)
-        st.title("Process your PDFs and perform vector search")
-        st.markdown('''
-        ## About
-        This app is a Google VertexAI PALM-powered chatbot built using:
-        - [Google VertexAI](https://cloud.google.com/vertex-ai/docs)
-        - [MongoDB Atlas Vector Search](https://www.mongodb.com/products/platform/atlas-vector-search)
-        - [Streamlit](https://streamlit.io/)
-        - [LangChain](https://python.langchain.com/)
-        ''')
-        add_vertical_space(5)
-        st.write(
-            'Made with ❤️  by [Ashwin Gangadhar](linkedin.com/in/ashwin-gangadhar-00b17046) and [Venkatesh Shanbhag](https://www.linkedin.com/in/venkatesh-shanbhag/) v1')
