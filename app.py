@@ -132,12 +132,12 @@ with tab1:
 
     if "conversation" not in st.session_state:
         st.session_state.conversation = None
-    if ("chat_history" not in st.session_state) or chat_history_clear:
-        st.session_state.chat_history = []
 
     st.header("GenAI app powered by MongoDB")
     user_question = st.text_input("Ask a question about your documents:")
     chat_history_clear = st.button("Clear Chat History")
+    if ("chat_history" not in st.session_state) or chat_history_clear:
+        st.session_state.chat_history = []
     if user_question:
         handle_userinput(user_question)
 
