@@ -10,7 +10,7 @@ PyPDF2==2.12.0
 python-dotenv
 InstructorEmbedding
 sentence-transformers
-langchain
+langchain==0.2.6
 langchain-community
 langchain-core
 python-dotenv
